@@ -9,14 +9,15 @@
 <div id="banner" class="banner hidden" role="alert"></div>
 <main>
 <section id="v-log" class="view active">
- <svg id="wheel" viewBox="-110 -110 220 220" aria-label="American roulette wheel"></svg>
- <p class="hint">Tap the number that came up (grid or wheel) to log it.</p>
+ <svg id="wheel" aria-hidden="true" viewBox="-110 -110 220 220" aria-label="American roulette wheel"></svg>
  <div id="last" class="last"></div>
+ <p class="hint">Tap the number that came up on the board to log it.</p>
  <div id="grid" class="grid"></div>
- <button id="undo" class="btn">↶ Undo last</button>
+  <div class="row"><button id="undo" class="btn">↶ Undo last</button><button id="scanBtn" class="btn">📷 Scan<span class="beta">Beta</span></button></div>
+ <button id="srBtn" class="btn desk">🖥 Screen read<span class="beta">Beta</span></button>
 </section>
 <section id="v-hist" class="view"><h2>Stats</h2><div id="stats"></div><h2>Frequency vs. chance</h2><div id="freq"></div><h2>History <small id="hcount"></small></h2><ol id="hist"></ol></section>
-<section id="v-rules" class="view"><h2>How streaks are judged</h2>
+<section id="v-rules" class="view"><h2>How streaks are judged</h2><div class="rules">
  <p>A <b>streak</b> is when the same kind of result comes up <b id="thr1">5</b> or more spins in a row. The app checks:</p>
  <ul><li><b>Colour</b> – red or black</li><li><b>Odd / even</b></li><li><b>Low (1–18) / high (19–36)</b></li>
  <li><b>Dozen</b> – 1st (1–12), 2nd (13–24), 3rd (25–36)</li><li><b>Column</b> – the three columns of the table layout</li></ul>
@@ -24,11 +25,29 @@
  <p>When a logged number makes a streak reach the set length, the app shows a banner, vibrates, and sends a notification if allowed. This alert happens once per streak. While the streak continues, a small box at the top shows it, e.g. “Red streak active · 6 in a row”, and the count updates with no further alert. The box disappears when the streak ends; undo recalculates it.</p>
  <p>Repeats of the same exact number are not streaks. They are counted in the History screen under “Most frequent so far”.</p>
  <div class="warn"><b>Facts about this app:</b> each spin is independent. The app only records and counts results that have already happened. It does not predict results or suggest bets.</div>
- <h2>Settings</h2>
- <label>Streak length: <input id="thr" type="number" min="2" max="20" value="5"></label>
+</div>
+ <h2>Settings</h2><div class="card">
+ <label class="setting">Streak length <input id="thr" type="number" min="2" max="20" value="5"></label></div>
  <button id="notif" class="btn">Allow notifications</button>
  <button id="clear" class="btn danger">Clear all history</button>
 </section>
 </main>
-<nav><button data-v="v-log" class="on">Log</button><button data-v="v-hist">History</button><button data-v="v-rules">Streak rules</button></nav>
+<nav><button data-v="v-log" class="on"><span class="i">◎</span>Log</button><button data-v="v-hist"><span class="i">☰</span>History</button><button data-v="v-rules"><span class="i">ⓘ</span>Streak rules</button></nav>
+<div id="scan" class="sheet hidden"><div>
+ <h2 style="margin-top:0">Scan a number<span class="beta">Beta</span></h2>
+ <p class="muted" style="font-size:13px">Point the rear camera at a digital results display or screen showing one number, then tap Capture. Reads numbers only — it does not track the ball on a wheel. Camera use may not be allowed at casino tables; check the venue rules.</p>
+ <video id="vid" playsinline muted autoplay></video><canvas id="snap" class="hidden"></canvas>
+ <div id="scanState" class="read"></div>
+ <input id="scanInput" class="bigin hidden" inputmode="numeric" maxlength="2" aria-label="Number read">
+ <p id="scanMsg" class="muted" style="text-align:center;font-size:13px"></p>
+ <button id="capBtn" class="btn pri">Capture</button><button id="okBtn" class="btn pri hidden">Log this number</button><button id="retryBtn" class="btn hidden">Retake</button><button id="closeScan" class="btn">Cancel</button>
+</div></div>
+<div id="sr" class="panel-float hidden"><div class="card">
+ <h3 style="margin-top:0">Screen read <span class="beta">Beta</span></h3>
+ <p class="muted" style="font-size:13px">Reads digits from the picture of a tab or window you share — it does not read page data or connect to the site. Nothing is logged until you confirm.</p>
+ <div class="srwrap"><video id="srVid" playsinline muted autoplay></video><div id="srOv"></div><div id="srBoxEl" class="hidden"></div></div>
+ <p id="srMsg" class="muted" style="font-size:13px"></p><p id="srLast" class="muted" style="font-size:12px"></p>
+ <div id="srPending" class="hidden"><p style="margin:4px 0">New number read:</p><input id="srIn" class="bigin" inputmode="numeric" maxlength="2" aria-label="Number read">
+  <div class="row"><button id="srOk" class="btn pri">Confirm &amp; log</button><button id="srSkip" class="btn">Ignore</button></div></div>
+ <button id="srStop" class="btn danger">Stop sharing</button></div></div>
 <script src="app.js"></script></body></html>
