@@ -1,0 +1,21 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#0b3d2e;color:#fff;padding-bottom:70px}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top))}
+h1{font-size:20px;margin:0}.tag{font-size:12px;background:#145c45;padding:3px 8px;border-radius:10px}
+.view{display:none;padding:0 12px}.view.active{display:block}
+#wheel{display:block;width:min(88vw,340px);margin:4px auto}#wheel path{cursor:pointer}
+.hint{text-align:center;opacity:.8;margin:4px;font-size:14px}.last{text-align:center;min-height:24px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:8px 0}
+.grid button{font-size:18px;font-weight:700;padding:11px 0;border:0;border-radius:6px;color:#fff}
+.r{background:#c0392b}.b{background:#1c1c1c}.g{background:#1e8b4c}.zeros{display:grid;grid-template-columns:1fr 1fr;gap:4px;grid-column:1/-1}
+.btn{width:100%;padding:12px;font-size:16px;border-radius:8px;border:0;background:#f1c40f;color:#000;font-weight:700;margin:6px 0}.danger{background:#e74c3c;color:#fff}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#06261c;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;padding:14px;background:none;border:0;color:#9fc;font-size:15px}nav .on{color:#fff;font-weight:700;border-top:3px solid #f1c40f}
+.banner{position:sticky;top:0;z-index:5;background:#f1c40f;color:#000;padding:12px;font-weight:700;margin:0 8px;border-radius:8px}.hidden{display:none}
+.banner small{display:block;font-weight:400}
+#hist{list-style:none;padding:0}#hist li{display:flex;justify-content:space-between;padding:6px 8px;border-bottom:1px solid #1b5a45}
+.chip{display:inline-block;min-width:34px;text-align:center;border-radius:14px;padding:2px 6px;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}td{padding:4px;border-bottom:1px solid #1b5a45}td:last-child{text-align:right}
+.warn{background:#3d2a0b;border-left:4px solid #f1c40f;padding:10px;border-radius:6px}input{font-size:16px;width:70px;padding:6px}
+.muted{opacity:.75}h3{font-size:16px;margin:12px 0 4px}
+#active{margin:0 8px}.status{font-size:13px;background:#145c45;border:1px solid #2e8b6a;border-radius:6px;padding:4px 8px;margin:2px 0}
+.cats td{padding:3px 2px;font-size:13px}.cats td:nth-child(n+2){text-align:right}

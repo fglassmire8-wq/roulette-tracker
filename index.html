@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b3d2e"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Roulette Log">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
+<title>Roulette Tracker</title><link rel="stylesheet" href="style.css"></head><body>
+<header><h1>Roulette Tracker</h1><span class="tag">American 0/00</span></header>
+<div id="active"></div>
+<div id="banner" class="banner hidden" role="alert"></div>
+<main>
+<section id="v-log" class="view active">
+ <svg id="wheel" viewBox="-110 -110 220 220" aria-label="American roulette wheel"></svg>
+ <p class="hint">Tap the number that came up (grid or wheel) to log it.</p>
+ <div id="last" class="last"></div>
+ <div id="grid" class="grid"></div>
+ <button id="undo" class="btn">↶ Undo last</button>
+</section>
+<section id="v-hist" class="view"><h2>Stats</h2><div id="stats"></div><h2>Frequency vs. chance</h2><div id="freq"></div><h2>History <small id="hcount"></small></h2><ol id="hist"></ol></section>
+<section id="v-rules" class="view"><h2>How streaks are judged</h2>
+ <p>A <b>streak</b> is when the same kind of result comes up <b id="thr1">5</b> or more spins in a row. The app checks:</p>
+ <ul><li><b>Colour</b> – red or black</li><li><b>Odd / even</b></li><li><b>Low (1–18) / high (19–36)</b></li>
+ <li><b>Dozen</b> – 1st (1–12), 2nd (13–24), 3rd (25–36)</li><li><b>Column</b> – the three columns of the table layout</li></ul>
+ <p><b>0 and 00</b> are green. They are not red/black, odd/even, low/high, or in any dozen or column, so they <b>break</b> those streaks.</p>
+ <p>When a logged number makes a streak reach the set length, the app shows a banner, vibrates, and sends a notification if allowed. This alert happens once per streak. While the streak continues, a small box at the top shows it, e.g. “Red streak active · 6 in a row”, and the count updates with no further alert. The box disappears when the streak ends; undo recalculates it.</p>
+ <p>Repeats of the same exact number are not streaks. They are counted in the History screen under “Most frequent so far”.</p>
+ <div class="warn"><b>Facts about this app:</b> each spin is independent. The app only records and counts results that have already happened. It does not predict results or suggest bets.</div>
+ <h2>Settings</h2>
+ <label>Streak length: <input id="thr" type="number" min="2" max="20" value="5"></label>
+ <button id="notif" class="btn">Allow notifications</button>
+ <button id="clear" class="btn danger">Clear all history</button>
+</section>
+</main>
+<nav><button data-v="v-log" class="on">Log</button><button data-v="v-hist">History</button><button data-v="v-rules">Streak rules</button></nav>
+<script src="app.js"></script></body></html>

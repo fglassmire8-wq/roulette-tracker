@@ -1,0 +1,5 @@
+shots/
+node_modules/
+test*.mjs
+package.json
+package-lock.json
